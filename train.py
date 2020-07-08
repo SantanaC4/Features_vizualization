@@ -4,15 +4,14 @@ from network import feedforward as ff
 from matplotlib import pyplot as plt
 
 #Carregando dataset  
-mndata = MNIST('./data')
+mndata = MNIST('../MNIST')
 
 images_training, labels_training = mndata.load_training()
 images_testing, labels_testing = mndata.load_testing()
 
-rede = ff.Network([784,128,10])
-
+rede = ff.Network([784,512,10])
 epoch = 1
-learn_rate = 0.01
+learn_rate = 0.001
 #####Treino por epoca########
 for i in range(epoch):
 
@@ -24,8 +23,8 @@ test_data = zip(images_testing, labels_testing)
 desempenho = rede.evaluate(test_data)
 print(desempenho)
 
-# Save weights
-with open("weights_{}ep_{}n_{}h_{:.2}%".format(epoch,rede.sizes[-2],len(rede.sizes[1:-1]),desempenho/100),"wb") as f:
+# Save weights of training
+with open("../weights_backup/weights_{}ep_{}n_{}h_{}".format(epoch,rede.sizes[-2],len(rede.sizes[1:-1]),desempenho/100),"wb") as f:
         pickle.dump(rede.weights,f)
 
 
