@@ -9,6 +9,8 @@ verify_ssl = true
 numpy = "*"
 matplotlib = "*"
 python-mnist = "*"
+scipy = "*"
+seaborn = "*"
 
 [requires]
 python_version = "3.8"
